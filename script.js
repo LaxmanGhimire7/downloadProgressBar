@@ -5,22 +5,25 @@ let grow = 0;
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
+    buttons.forEach((b) => {
+      b.style.pointerEvents = "none";
+    });
     let num = Math.floor(50 + Math.random() * 50);
 
-    btn.style.pointerEvents = "none";
     var int = setInterval(() => {
       grow++;
       progress.innerHTML = grow + "%";
       progressInner.style.width = grow + "%";
     }, num);
 
+
     setTimeout(() => {
       clearInterval(int);
-      btn.innerHTML = "Downloaded"
-      btn.style.opacity = 0.5
+      buttons.forEach((b) => {
+        b.innerHTML = "Downloaded";
+      });
+
+      btn.style.opacity = 0.5;
     }, num * 100);
-
-    
-
   });
 });
